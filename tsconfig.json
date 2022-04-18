@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "target": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "strict": true
+  }
+}

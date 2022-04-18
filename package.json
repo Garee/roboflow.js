@@ -1,0 +1,48 @@
+{
+  "name": "roboflow.js",
+  "version": "0.0.1",
+  "description": "A JavaScript package for the Roboflow Web API.",
+  "author": "Gary Blackwood <gary@garyblackwood.co.uk>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Garee/roboflow.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Garee/roboflow.js/issues",
+    "email": "gary@garyblackwood.co.uk"
+  },
+  "keywords": [
+    "roboflow",
+    "api"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && npm run bundle && npm run types",
+    "bundle": "node esbuild.js",
+    "clean": "rimraf lib *.tgz",
+    "format": "prettier --write **/*.{js,ts,json}",
+    "lint": "eslint src/**",
+    "test": "jest --watch",
+    "test:ci": "jest",
+    "types": "tsc --outdir lib"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node-fetch": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "dotenv": "^16.0.0",
+    "esbuild": "^0.14.36",
+    "eslint": "^8.13.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
