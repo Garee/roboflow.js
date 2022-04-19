@@ -18,7 +18,10 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm run test:ci
+      - name: Run jest unit tests
+        env:
+          ROBOFLOW_API_KEY: ${{ secrets.ROBOFLOW_API_KEY }}
+        run: npm run test:ci
 
   publish-gpr:
     needs: build
