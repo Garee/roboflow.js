@@ -1,5 +1,5 @@
 {
-  "name": "roboflow.js",
+  "name": "@garyblackwood/roboflow.js",
   "version": "0.0.1",
   "description": "A JavaScript package for the Roboflow Web API.",
   "author": "Gary Blackwood <gary@garyblackwood.co.uk>",
