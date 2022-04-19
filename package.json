@@ -1,6 +1,6 @@
 {
   "name": "@garyblackwood/roboflow.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A JavaScript package for the Roboflow Web API.",
   "author": "Gary Blackwood <gary@garyblackwood.co.uk>",
   "license": "MIT",
