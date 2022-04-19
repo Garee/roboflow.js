@@ -20,6 +20,13 @@ export interface VersionResponseBody {
   version: Version;
 }
 
+export interface FormatResponseBody {
+  workspace: Workspace;
+  project: Project;
+  version: Version;
+  export: Export;
+}
+
 export interface Workspace {
   name: string;
   url: string;
@@ -61,4 +68,9 @@ export interface Version {
   preprocessing: Record<string, unknown>;
   augmentation: Record<string, unknown>;
   exports: string[];
+}
+
+export interface Export {
+  format: string;
+  link: string;
 }

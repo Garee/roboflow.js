@@ -140,3 +140,35 @@ test("test get version (unauthenticated)", async () => {
     }
   }
 });
+
+test("test get format", async () => {
+  const workspaceName = await roboflow.root().then((r) => r.workspace);
+  if (!workspaceName) {
+    throw new Error("Failed to get a valid workspace name.");
+  }
+
+  const res = await roboflow.workspace(workspaceName);
+  if (!res.workspace.projects?.length) {
+    throw new Error("Failed to get a valid project name.");
+  }
+
+  const projectName = res.workspace.projects[0].name;
+  const { project } = await roboflow.project(workspaceName, projectName);
+  const { version } = await roboflow.version(
+    workspaceName,
+    projectName,
+    project.versions
+  );
+  const format = version.exports[0];
+  const body = await roboflow.format(
+    workspaceName,
+    projectName,
+    project.versions,
+    format
+  );
+  expect(body.workspace).toBeDefined();
+  expect(body.project).toBeDefined();
+  expect(body.version).toBeDefined();
+  expect(body.export.format).toBe(format);
+  expect(typeof body.export.link).toEqual("string");
+});

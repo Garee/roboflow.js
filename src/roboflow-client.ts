@@ -1,6 +1,7 @@
 import fetch, { Response } from "node-fetch";
 import { RoboflowClientHttpError } from "./http";
 import {
+  FormatResponseBody,
   ProjectResponseBody,
   RootResponseBody,
   VersionResponseBody,
@@ -65,6 +66,20 @@ export class RoboflowClient {
 
     const res = await this.req(url);
     const body: VersionResponseBody = await res.json();
+    return body;
+  }
+
+  public async format(
+    workspace: string,
+    project: string,
+    version: number,
+    format: string
+  ): Promise<FormatResponseBody> {
+    const url = this.buildUrl(`${workspace}/${project}/${version}/${format}`);
+    this.log(`Sending request: GET ${url}`);
+
+    const res = await this.req(url);
+    const body: FormatResponseBody = await res.json();
     return body;
   }
 
