@@ -12,6 +12,7 @@ export interface WorkspaceResponseBody {
 export interface ProjectResponseBody {
   workspace: Workspace;
   project: Project;
+  versions: Version[];
 }
 
 export interface VersionResponseBody {
