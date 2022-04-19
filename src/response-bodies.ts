@@ -57,8 +57,8 @@ export interface VersionSummary {
     valid: number;
     test: number;
   };
-  model?: any;
-  preprocessing: Record<string, any>;
-  augmentation: Record<string, any>;
+  model?: unknown;
+  preprocessing: Record<string, unknown>;
+  augmentation: Record<string, unknown>;
   exports: string[];
 }
