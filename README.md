@@ -19,9 +19,10 @@ Use:
 ```javascript
 import { RoboflowClient } from "@garyblackwood/roboflow.js";
 
-const roboflow = RoboflowClient(process.env.ROBOFLOW_API_KEY);
-const status = roboflow.root();
-const workspace = roboflow.workspace("my-workspace");
+const roboflow = new RoboflowClient(process.env.ROBOFLOW_API_KEY);
+
+const project = roboflow.workspace("<workspaceName>", "<projectName>");
+console.log(project);
 ```
 
 ## Development Quick Start
