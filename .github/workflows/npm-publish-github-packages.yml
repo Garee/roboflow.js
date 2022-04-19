@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: Default
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -21,6 +23,8 @@ jobs:
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: Default
     permissions:
       contents: read
       packages: write
