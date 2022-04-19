@@ -83,3 +83,60 @@ test("test get project", async () => {
   expect(body.workspace).toBeDefined();
   expect(body.project).toBeDefined();
 });
+
+test("test get project (unauthenticated)", async () => {
+  const roboflow = new RoboflowClient("", {
+    debug: process.env.DEBUG === "true",
+  });
+
+  try {
+    await roboflow.project("workspace", "project");
+    throw new Error("Expected exception to be thrown.");
+  } catch (err) {
+    const isInstance = err instanceof RoboflowClientHttpError;
+    expect(isInstance).toBeTruthy();
+    if (isInstance) {
+      expect(err.res).toBeDefined();
+    }
+  }
+});
+
+test("test get version", async () => {
+  const workspaceName = await roboflow.root().then((r) => r.workspace);
+  if (!workspaceName) {
+    throw new Error("Failed to get a valid workspace name.");
+  }
+
+  const res = await roboflow.workspace(workspaceName);
+  if (!res.workspace.projects?.length) {
+    throw new Error("Failed to get a valid project name.");
+  }
+
+  const projectName = res.workspace.projects[0].name;
+  const { project } = await roboflow.project(workspaceName, projectName);
+  const body = await roboflow.version(
+    workspaceName,
+    projectName,
+    project.versions
+  );
+  expect(body.workspace).toBeDefined();
+  expect(body.project).toBeDefined();
+  expect(body.version).toBeDefined();
+});
+
+test("test get version (unauthenticated)", async () => {
+  const roboflow = new RoboflowClient("", {
+    debug: process.env.DEBUG === "true",
+  });
+
+  try {
+    await roboflow.version("workspace", "project", 1);
+    throw new Error("Expected exception to be thrown.");
+  } catch (err) {
+    const isInstance = err instanceof RoboflowClientHttpError;
+    expect(isInstance).toBeTruthy();
+    if (isInstance) {
+      expect(err.res).toBeDefined();
+    }
+  }
+});

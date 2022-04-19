@@ -14,14 +14,20 @@ export interface ProjectResponseBody {
   project: Project;
 }
 
+export interface VersionResponseBody {
+  workspace: Workspace;
+  project: Project;
+  version: Version;
+}
+
 export interface Workspace {
   name: string;
   url: string;
   members: number;
-  projects?: ProjectSummary[];
+  projects?: Project[];
 }
 
-interface ProjectShared {
+interface Project {
   id: string;
   type: string;
   name: string;
@@ -36,18 +42,12 @@ interface ProjectShared {
     valid: number;
     test: number;
   };
+  colors: Record<string, string>;
   classes: Record<string, number>;
-}
-
-export interface ProjectSummary extends ProjectShared {
   versions: number;
 }
 
-export interface Project extends ProjectShared {
-  versions: VersionSummary[];
-}
-
-export interface VersionSummary {
+export interface Version {
   id: string;
   name: string;
   created: number;

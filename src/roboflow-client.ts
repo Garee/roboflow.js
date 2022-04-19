@@ -3,6 +3,7 @@ import { RoboflowClientHttpError } from "./http";
 import {
   ProjectResponseBody,
   RootResponseBody,
+  VersionResponseBody,
   WorkspaceResponseBody,
 } from "./response-bodies";
 
@@ -51,6 +52,19 @@ export class RoboflowClient {
 
     const res = await this.req(url);
     const body: ProjectResponseBody = await res.json();
+    return body;
+  }
+
+  public async version(
+    workspace: string,
+    project: string,
+    version: number
+  ): Promise<VersionResponseBody> {
+    const url = this.buildUrl(`${workspace}/${project}/${version}`);
+    this.log(`Sending request: GET ${url}`);
+
+    const res = await this.req(url);
+    const body: VersionResponseBody = await res.json();
     return body;
   }
 
