@@ -29,6 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run build --if-present
-    - run: npm run test:ci
-      with:
+    - name: Run jest unit tests
+      env:
         ROBOFLOW_API_KEY: ${{ secrets.ROBOFLOW_API_KEY }}
+      run: npm run test:ci
+
